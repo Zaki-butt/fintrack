@@ -14,7 +14,7 @@
     @include('layouts.sidebar')
 
     {{-- ✅ Navbar (fixed top) --}}
-    @include('layouts.navbar')
+    @include('layouts.navigation')
 
     <main class="pt-20 ml-64 px-12 pb-12">
         @yield('content')
