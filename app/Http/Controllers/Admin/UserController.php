@@ -13,7 +13,7 @@ class UserController extends Controller
     // Display a list of users
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10); // show 10 users per page
         return view('admin.users.index', compact('users'));
     }
 
@@ -60,7 +60,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => ['required','email', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
             'password' => 'nullable|string|min:8|confirmed',
             'role' => ['required', Rule::in(['admin', 'user'])],
         ]);

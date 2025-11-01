@@ -45,9 +45,20 @@ Route::middleware('auth')->group(function () {
 */
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard'); // Admin dashboard
-    Route::resource('users', UserController::class); // CRUD for users
-    Route::resource('settings', SettingsController::class); // Admin settings
+
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+
+    Route::resource('users', UserController::class);
+
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::get('/general', [SettingsController::class, 'general'])->name('general');
+        Route::get('/finance', [SettingsController::class, 'finance'])->name('finance');
+        Route::get('/billing', [SettingsController::class, 'billing'])->name('billing');
+        Route::get('/stripe', [SettingsController::class, 'stripe'])->name('stripe');
+        Route::get('/security', [SettingsController::class, 'security'])->name('security');
+        Route::get('/system', [SettingsController::class, 'system'])->name('system');
+    });
 });
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

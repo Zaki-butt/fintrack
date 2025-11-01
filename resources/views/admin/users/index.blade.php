@@ -25,22 +25,25 @@
         </thead>
         <tbody>
             @foreach($users as $user)
-            <tr>
-                <td class="border p-2">{{ $user->id }}</td>
-                <td class="border p-2">{{ $user->name }}</td>
-                <td class="border p-2">{{ $user->email }}</td>
-                <td class="border p-2">{{ $user->role }}</td>
-                <td class="border p-2 space-x-2">
-                    <a href="{{ route('admin.users.show', $user->id) }}" class="text-blue-500">View</a>
-                    <a href="{{ route('admin.users.edit', $user->id) }}" class="text-yellow-500">Edit</a>
-                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline-block">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-red-500" onclick="return confirm('Are you sure?')">Delete</button>
-                    </form>
-                </td>
-            </tr>
+                <tr>
+                    <td class="border p-2">{{ $user->id }}</td>
+                    <td class="border p-2">{{ $user->name }}</td>
+                    <td class="border p-2">{{ $user->email }}</td>
+                    <td class="border p-2">
+                        {{ $user->roles->pluck('name')->implode(', ') ?: 'No Role Assigned' }}
+                    </td>
+                    <td class="border p-2 space-x-2">
+                        <a href="{{ route('admin.users.show', $user->id) }}" class="text-blue-500">View</a>
+                        <a href="{{ route('admin.users.edit', $user->id) }}" class="text-yellow-500">Edit</a>
+                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
+    {{ $users->links() }}
 @endsection
