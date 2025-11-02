@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -60,5 +62,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     });
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::resource('income', IncomeController::class);
+    Route::resource('expenses', ExpenseController::class);
+});
 
 require __DIR__ . '/auth.php';
