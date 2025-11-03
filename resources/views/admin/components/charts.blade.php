@@ -12,13 +12,13 @@
     <canvas id="cashFlowChart" height="300"></canvas>
   </div>
 
-  <!-- Category-wise Spending -->
+  {{-- <!-- Category-wise Spending -->
   <div class="border border-gray-200 rounded-xl bg-white shadow-sm p-6 lg:col-span-2">
     <h3 class="text-[#1E293B] text-lg font-semibold mb-4">Category-wise Spending</h3>
     <div class="flex justify-center">
       <canvas id="categoryChart" height="300"></canvas>
     </div>
-  </div>
+  </div> --}}
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

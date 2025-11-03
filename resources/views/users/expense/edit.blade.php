@@ -1,43 +1,68 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Expense')
-
 @section('content')
-<div class="container mt-4">
-    <h3>Edit Expense</h3>
+    <h1 class="text-2xl font-bold mb-4">Edit Expense</h1>
 
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <form action="{{ route('expenses.update', $expense->id) }}" method="POST">
-                @csrf @method('PUT')
+    <div class="bg-white shadow rounded-lg p-6">
+        <form action="{{ route('expenses.update', $expense->id) }}" method="POST" class="space-y-4">
+            @csrf
+            @method('PUT')
 
-                <div class="mb-3">
-                    <label class="form-label">Title</label>
-                    <input type="text" name="title" value="{{ old('title', $expense->title) }}" class="form-control" required>
-                    @error('title') <small class="text-danger">{{ $message }}</small> @enderror
-                </div>
+            <!-- Title -->
+            <div>
+                <label class="block font-semibold mb-1">Title</label>
+                <input type="text" name="title" value="{{ old('title', $expense->title) }}"
+                       class="w-full border border-gray-300 rounded p-2 focus:ring focus:ring-blue-200" required>
+                @error('title')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Amount</label>
-                    <input type="number" name="amount" step="0.01" value="{{ old('amount', $expense->amount) }}" class="form-control" required>
-                    @error('amount') <small class="text-danger">{{ $message }}</small> @enderror
-                </div>
+            <!-- Amount -->
+            <div>
+                <label class="block font-semibold mb-1">Amount</label>
+                <input type="number" name="amount" step="0.01" value="{{ old('amount', $expense->amount) }}"
+                       class="w-full border border-gray-300 rounded p-2 focus:ring focus:ring-blue-200" required>
+                @error('amount')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Date</label>
-                    <input type="date" name="date" value="{{ old('date', $expense->date->format('Y-m-d')) }}" class="form-control" required>
-                    @error('date') <small class="text-danger">{{ $message }}</small> @enderror
-                </div>
+            <!-- Date -->
+            <div>
+                <label class="block font-semibold mb-1">Date</label>
+                <input type="date" name="date" 
+                       value="{{ old('date', \Carbon\Carbon::parse($expense->date)->format('Y-m-d')) }}"
+                       class="w-full border border-gray-300 rounded p-2 focus:ring focus:ring-blue-200" required>
+                @error('date')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea name="description" class="form-control" rows="3">{{ old('description', $expense->description) }}</textarea>
-                </div>
+            <!-- Optional Category -->
+            <div>
+                <label class="block font-semibold mb-1">Category (Optional)</label>
+                <input type="text" name="category" value="{{ old('category', $expense->category ?? '') }}"
+                       class="w-full border border-gray-300 rounded p-2 focus:ring focus:ring-blue-200">
+            </div>
 
-                <button type="submit" class="btn btn-success">Update Expense</button>
-                <a href="{{ route('expenses.index') }}" class="btn btn-secondary">Cancel</a>
-            </form>
-        </div>
+            <!-- Description -->
+            <div>
+                <label class="block font-semibold mb-1">Description</label>
+                <textarea name="description" rows="3"
+                          class="w-full border border-gray-300 rounded p-2 focus:ring focus:ring-blue-200">{{ old('description', $expense->description) }}</textarea>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex space-x-3">
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                    Update Expense
+                </button>
+                <a href="{{ route('expenses.index') }}"
+                   class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
+                    Cancel
+                </a>
+            </div>
+        </form>
     </div>
-</div>
 @endsection

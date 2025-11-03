@@ -16,11 +16,11 @@
     </div>
 
     <nav class="px-4 space-y-1">
-
+        @role('user')
         <!-- Dashboard -->
-        <a href="{{ route('dashboard') }}"
+        <a href="{{ route('user-dashboard') }}"
             class="w-full flex items-center gap-3 px-4 py-3 rounded-lg 
-       {{ request()->routeIs('dashboard') ? 'bg-[#3B82F6] text-white' : 'text-gray-600 hover:bg-gray-50' }}">
+       {{ request()->routeIs('user-dashboard') ? 'bg-[#3B82F6] text-white' : 'text-gray-600 hover:bg-gray-50' }}">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="7" height="7"></rect>
@@ -30,7 +30,7 @@
             </svg>
             <span>Dashboard</span>
         </a>
-        @role('user')
+       
             <!-- Income -->
             <a href="{{ route('income.index') }}"
                 class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors 
@@ -55,8 +55,8 @@
                 </svg>
                 <span>Expense</span>
             </a>
-        @endrole
-        <!-- Subscriptions -->
+
+              <!-- Subscriptions -->
         <button
             class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
@@ -66,8 +66,24 @@
             </svg>
             <span>Subscriptions</span>
         </button>
+        @endrole
+      
 
         @role('admin')
+
+         <!-- Dashboard -->
+        <a href="{{ route('dashboard') }}"
+            class="w-full flex items-center gap-3 px-4 py-3 rounded-lg 
+       {{ request()->routeIs('dashboard') ? 'bg-[#3B82F6] text-white' : 'text-gray-600 hover:bg-gray-50' }}">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Dashboard</span>
+        </a>
             <!-- Users -->
             <a href="{{ route('admin.users.index') }}"
                 class="w-full flex items-center gap-3 px-4 py-3 rounded-lg 
@@ -80,7 +96,16 @@
                 </svg>
                 <span>Users</span>
             </a>
-
+              <!-- Subscriptions -->
+        <button
+            class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="2" y1="11" x2="22" y2="11"></line>
+            </svg>
+            <span>Subscriptions</span>
+        </button>
 
             <!-- Settings -->
             <a href="{{ route('admin.settings.general') }}"

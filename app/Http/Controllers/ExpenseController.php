@@ -40,7 +40,7 @@ class ExpenseController extends Controller
 
         Expense::create($validated);
 
-        return redirect()->route('expense.index')->with('success', 'Expense added successfully.');
+        return redirect()->route('expenses.index')->with('success', 'Expense added successfully.');
     }
 
     public function show($id)
@@ -68,7 +68,7 @@ class ExpenseController extends Controller
 
         $expense->update($validated);
 
-        return redirect()->route('expense.index')->with('success', 'Expense updated successfully.');
+        return redirect()->route('expenses.index')->with('success', 'Expense updated successfully.');
     }
 
     public function destroy($id)
@@ -76,6 +76,6 @@ class ExpenseController extends Controller
         $expense = Expense::where('user_id', Auth::id())->findOrFail($id);
         $expense->delete();
 
-        return redirect()->route('expense.index')->with('success', 'Expense deleted successfully.');
+        return redirect()->route('expenses.index')->with('success', 'Expense deleted successfully.');
     }
 }
