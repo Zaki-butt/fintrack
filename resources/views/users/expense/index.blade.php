@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Expense Records</h1>
 
-    <a href="{{ route('expenses.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">
+    <a href="{{ route('user.expenses.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">
         Add New Expense
     </a>
 
@@ -33,9 +33,9 @@
                     <td class="border p-2">{{ $expense->date }}</td>
                     <td class="border p-2">{{ $expense->user->name ?? 'N/A' }}</td>
                     <td class="border p-2 space-x-2">
-                        <a href="{{ route('expenses.show', $expense->id) }}" class="text-blue-500">View</a>
-                        <a href="{{ route('expenses.edit', $expense->id) }}" class="text-yellow-500">Edit</a>
-                        <form action="{{ route('expenses.destroy', $expense->id) }}" method="POST" class="inline-block">
+                        <a href="{{ route('user.expenses.show', $expense->id) }}" class="text-blue-500">View</a>
+                        <a href="{{ route('user.expenses.edit', $expense->id) }}" class="text-yellow-500">Edit</a>
+                        <form action="{{ route('user.expenses.destroy', $expense->id) }}" method="POST" class="inline-block">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-500" onclick="return confirm('Are you sure?')">

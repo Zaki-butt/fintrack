@@ -64,7 +64,7 @@ class IncomeController extends Controller
 
         Income::create($validated);
 
-        return redirect()->route('income.index')->with('success', 'Income record added successfully.');
+        return redirect()->route('user.income.index')->with('success', 'Income record added successfully.');
     }
 
     /**
@@ -92,7 +92,7 @@ class IncomeController extends Controller
 
         $income->update($validated);
 
-        return redirect()->route('income.index')->with('success', 'Income updated successfully.');
+        return redirect()->route('user.income.index')->with('success', 'Income updated successfully.');
     }
 
     /**
@@ -103,6 +103,6 @@ class IncomeController extends Controller
         $income = Income::where('user_id', Auth::id())->findOrFail($id);
         $income->delete();
 
-        return redirect()->route('income.index')->with('success', 'Income deleted successfully.');
+        return redirect()->route('user.income.index')->with('success', 'Income deleted successfully.');
     }
 }

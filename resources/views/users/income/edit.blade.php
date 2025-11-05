@@ -4,7 +4,7 @@
     <h1 class="text-2xl font-bold mb-4">Edit Income</h1>
 
     <div class="bg-white shadow rounded-lg p-6">
-        <form action="{{ route('income.update', $income->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('user.income.update', $income->id) }}" method="POST" class="space-y-4">
             @csrf
             @method('PUT')
 
@@ -45,7 +45,7 @@
                 <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
                     Update
                 </button>
-                <a href="{{ route('income.index') }}"
+                <a href="{{ route('user.income.index') }}"
                    class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
                     Cancel
                 </a>

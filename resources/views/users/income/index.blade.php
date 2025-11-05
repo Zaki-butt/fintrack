@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Income Records</h1>
 
-    <a href="{{ route('income.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">
+    <a href="{{ route('user.income.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">
         Add New Income
     </a>
 
@@ -31,9 +31,9 @@
                     <td class="border p-2">{{ $income->date }}</td>
                     <td class="border p-2">{{ $income->user->name ?? 'N/A' }}</td>
                     <td class="border p-2 space-x-2">
-                        <a href="{{ route('income.show', $income->id) }}" class="text-blue-500">View</a>
-                        <a href="{{ route('income.edit', $income->id) }}" class="text-yellow-500">Edit</a>
-                        <form action="{{ route('income.destroy', $income->id) }}" method="POST" class="inline-block">
+                        <a href="{{ route('user.income.show', $income->id) }}" class="text-blue-500">View</a>
+                        <a href="{{ route('user.income.edit', $income->id) }}" class="text-yellow-500">Edit</a>
+                        <form action="{{ route('user.income.destroy', $income->id) }}" method="POST" class="inline-block">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-500" onclick="return confirm('Are you sure?')">

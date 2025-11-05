@@ -32,7 +32,7 @@
         <div class="mt-6 flex space-x-3">
             @can('edit own income')
                 @if (auth()->user()->id === $income->user_id || auth()->user()->hasRole('admin'))
-                    <a href="{{ route('income.edit', $income->id) }}"
+                    <a href="{{ route('user.income.edit', $income->id) }}"
                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                         Edit
                     </a>
@@ -41,7 +41,7 @@
 
             @can('delete own income')
                 @if (auth()->user()->id === $income->user_id || auth()->user()->hasRole('admin'))
-                    <form action="{{ route('income.destroy', $income->id) }}" method="POST"
+                    <form action="{{ route('user.income.destroy', $income->id) }}" method="POST"
                           onsubmit="return confirm('Are you sure you want to delete this income?')">
                         @csrf
                         @method('DELETE')
@@ -53,7 +53,7 @@
                 @endif
             @endcan
 
-            <a href="{{ route('income.index') }}"
+            <a href="{{ route('user.income.index') }}"
                class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
                 Back
             </a>

@@ -25,9 +25,9 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -63,11 +63,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     });
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(function () {
     Route::resource('income', IncomeController::class);
     Route::resource('expenses', ExpenseController::class);
-    Route::get('user/dashboard', [UserDashboardController::class, 'index'])
-    ->name('user-dashboard');
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])
+    ->name('dashboard');
 });
 
 require __DIR__ . '/auth.php';

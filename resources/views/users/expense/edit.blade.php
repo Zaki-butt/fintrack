@@ -4,7 +4,7 @@
     <h1 class="text-2xl font-bold mb-4">Edit Expense</h1>
 
     <div class="bg-white shadow rounded-lg p-6">
-        <form action="{{ route('expenses.update', $expense->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('user.expenses.update', $expense->id) }}" method="POST" class="space-y-4">
             @csrf
             @method('PUT')
 
@@ -58,7 +58,7 @@
                 <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
                     Update Expense
                 </button>
-                <a href="{{ route('expenses.index') }}"
+                <a href="{{ route('user.expenses.index') }}"
                    class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
                     Cancel
                 </a>

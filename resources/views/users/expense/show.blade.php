@@ -38,7 +38,7 @@
         <div class="mt-6 flex space-x-3">
             @can('edit own expense')
                 @if (auth()->user()->id === $expense->user_id || auth()->user()->hasRole('admin'))
-                    <a href="{{ route('expenses.edit', $expense->id) }}"
+                    <a href="{{ route('user.expenses.edit', $expense->id) }}"
                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                         Edit
                     </a>
@@ -47,7 +47,7 @@
 
             @can('delete own expense')
                 @if (auth()->user()->id === $expense->user_id || auth()->user()->hasRole('admin'))
-                    <form action="{{ route('expenses.destroy', $expense->id) }}" method="POST"
+                    <form action="{{ route('user.expenses.destroy', $expense->id) }}" method="POST"
                           onsubmit="return confirm('Are you sure you want to delete this expense?')">
                         @csrf
                         @method('DELETE')
@@ -59,7 +59,7 @@
                 @endif
             @endcan
 
-            <a href="{{ route('expenses.index') }}"
+            <a href="{{ route('user.expenses.index') }}"
                class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
                 Back
             </a>
